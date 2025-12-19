@@ -10,6 +10,8 @@ The agent takes user input, analyzes it using simple rules, and responds with an
 - Interactive user input
 - Beginner-friendly Python code
 - Easy to expand into smarter agents
+- 🧠 Memory support (remembers user name & conversation)
+
 
 ## 🔹 How it works
 1. User gives input
@@ -27,4 +29,5 @@ The agent takes user input, analyzes it using simple rules, and responds with an
 
 ---
 ⭐ Built while learning AI agents step by step.
+
 
