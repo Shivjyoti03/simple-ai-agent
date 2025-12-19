@@ -11,6 +11,8 @@ The agent takes user input, analyzes it using simple rules, and responds with an
 - Easy to expand into smarter agents
 - 🧠 Memory support (remembers user name & conversation)
 - ⚙️ Task automation (file handling, time, system actions)
+- 💾 Persistent memory using JSON (remembers data across sessions)
+
 
 ## 🔹 How it works
 1. User gives input
