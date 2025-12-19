@@ -1,5 +1,4 @@
-
-# 🤖 Simple AI Agent (Beginner)
+# 🤖 AI Task Automation Agent
 
 This is my first AI Agent project built using **Python**.
 
@@ -11,7 +10,7 @@ The agent takes user input, analyzes it using simple rules, and responds with an
 - Beginner-friendly Python code
 - Easy to expand into smarter agents
 - 🧠 Memory support (remembers user name & conversation)
-
+- ⚙️ Task automation (file handling, time, system actions)
 
 ## 🔹 How it works
 1. User gives input
