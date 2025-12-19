@@ -1,15 +1,30 @@
-# AI Task Automation Agent (Beginner Friendly)
+# AI Agent with Persistent Memory (Beginner Friendly)
 
-import datetime
+import json
 import os
+import datetime
+
+MEMORY_FILE = "memory.json"
+
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, "r") as f:
+            return json.load(f)
+    return {"name": None, "messages": []}
+
+def save_memory(memory):
+    with open(MEMORY_FILE, "w") as f:
+        json.dump(memory, f, indent=4)
 
 def ai_agent():
-    memory = {
-        "name": None,
-        "messages": []
-    }
+    memory = load_memory()
 
-    print("🤖 Task Automation AI Agent Activated!")
+    print("🤖 AI Agent with Persistent Memory Activated!")
+    if memory["name"]:
+        print(f"Welcome back, {memory['name']} 😊")
+    else:
+        print("Hello! I don't know your name yet.")
+
     print("Commands:")
     print("- hello")
     print("- my name is <name>")
@@ -25,50 +40,53 @@ def ai_agent():
 
         if "hello" in user_input:
             if memory["name"]:
-                print(f"Agent: Hello, {memory['name']} 😊")
+                print(f"Agent: Hello again, {memory['name']}!")
             else:
                 print("Agent: Hello! What is your name?")
 
         elif "my name is" in user_input:
             name = user_input.replace("my name is", "").strip()
             memory["name"] = name.capitalize()
-            print(f"Agent: Nice to meet you, {memory['name']}!")
+            print(f"Agent: Got it! I'll remember you, {memory['name']}.")
 
         elif user_input == "time":
             now = datetime.datetime.now()
-            print("Agent: Current date & time:", now.strftime("%Y-%m-%d %H:%M:%S"))
+            print("Agent:", now.strftime("%Y-%m-%d %H:%M:%S"))
 
         elif user_input.startswith("create file"):
             filename = user_input.replace("create file", "").strip()
             if filename:
                 with open(filename, "w") as f:
-                    f.write("This file was created by the AI automation agent.\n")
-                print(f"Agent: File '{filename}' created successfully 📄")
-            else:
-                print("Agent: Please provide a filename.")
+                    f.write("Created by AI Agent with persistent memory.\n")
+                print(f"Agent: File '{filename}' created 📄")
 
         elif user_input.startswith("read file"):
             filename = user_input.replace("read file", "").strip()
             if os.path.exists(filename):
                 with open(filename, "r") as f:
-                    print("Agent: File contents:")
+                    print("Agent: File content:")
                     print(f.read())
             else:
                 print("Agent: File not found ❌")
 
         elif "remember" in user_input:
-            print("Agent: Here is what I remember:")
+            print("Agent: Here's what I remember:")
             print(f"- Name: {memory['name']}")
-            print(f"- Messages: {len(memory['messages'])}")
+            print(f"- Total messages: {len(memory['messages'])}")
 
         elif "exit" in user_input:
-            print("Agent: Shutting down. Goodbye! 👋")
+            save_memory(memory)
+            print("Agent: Memory saved. Goodbye! 👋")
             break
 
         else:
-            print("Agent: Command not recognized yet.")
+            print("Agent: I'm learning...")
+
+        save_memory(memory)
 
 if __name__ == "__main__":
     ai_agent()
+
+
 
 
